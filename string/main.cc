@@ -16,6 +16,10 @@ int main(int argc, char* argv[])
     qh::string str2(s);
     assert(str2.size() == strlen(s));
 
+    const char *s1 = "";
+    qh::string str21(s1);
+    assert(str21.size() == strlen(s1));
+
     char *bracket = str2[3];
     assert(*bracket == 'l');
 
@@ -25,6 +29,8 @@ int main(int argc, char* argv[])
     qh::string str3(s, 5);
     assert(strlen(str3.c_str()) == 5);
 
+    qh::string str31(s, 20);
+    assert(strlen(str31.c_str()) == strlen(s));
 
 #ifdef WIN32
     system("pause");

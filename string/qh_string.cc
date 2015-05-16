@@ -16,6 +16,13 @@ namespace qh
     string::string( const char* s )
     {
         len_ = strlen(s);
+        if(len_ == 0)
+        {
+            data_ = NULL;
+            len_ = 0;
+            return;
+        }
+
         data_ = new char[len_ + 1];
         if( data_ )
         {
@@ -28,6 +35,13 @@ namespace qh
 
     string::string( const char* s, size_t len )
     {
+        if(len == 0)
+        {
+            data_ = NULL;
+            len_ = 0;
+            return;
+        }
+
         size_t sourceLen = strlen(s);
         len_ = len > sourceLen ? sourceLen : len;
 
@@ -45,9 +59,11 @@ namespace qh
     {
         if(rhs.data_ == NULL)
         {
-            string();
+            data_ = NULL;
+            len_ = 0;
             return;
         }
+
         len_ = rhs.len_;
         data_ = new char[len_ + 1];
         if( data_ )
@@ -70,7 +86,8 @@ namespace qh
 
     string::~string()
     {
-        delete []data_;
+        if(data_ != NULL)
+            delete []data_;
         len_ = 0;
     }
 
