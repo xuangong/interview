@@ -68,8 +68,7 @@ namespace qh
         data_ = new char[len_ + 1];
         if( data_ )
         {
-            memcpy(data_, rhs.data_, len_);
-            data_[len_] = '\0';
+            memcpy(data_, rhs.data_, len_ + 1);
         }
         else
             len_ = 0;
@@ -79,7 +78,25 @@ namespace qh
     {
         if(&rhs != this)
         {
-            string(rhs);
+            if(data_ != NULL)
+                delete []data_;
+
+            if(rhs.data_ == NULL)
+            {
+                data_ = NULL;
+                len_ = 0;
+            }
+            else
+            {
+                len_ = rhs.len_;
+                data_ = new char[len_ + 1];
+                if( data_ )
+                {
+                    memcpy(data_, rhs.data_, len_ + 1);
+                }
+                else
+                    len_ = 0;
+            }
         }
         return *this;
     }
@@ -88,7 +105,6 @@ namespace qh
     {
         if(data_ != NULL)
             delete []data_;
-        len_ = 0;
     }
 
     size_t string::size() const
