@@ -6,8 +6,7 @@
 
 namespace qh
 {
-    // TODO ½«ÔÚÕâÀïĞ´ÊµÏÖ´úÂë
-
+    // TODO ¿¿¿¿¿¿¿¿¿
     string::string()
         : data_(NULL), len_(0)
     {
